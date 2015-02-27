@@ -12,10 +12,10 @@ class IndoorVoice
   # @return [Symbol] the language's BCP 47 code
   attr_reader :language_id
 
-  # @return [Array<String>] the characters in the language
+  # @return [Set<String>] the characters in the language
   attr_reader :characters
 
-  # @return [Array<Regexp>] regular expressions for non-word character sequences
+  # @return [Array<Regexp>] regular expressions matching non-word character sequences
   attr_reader :patterns
 
   # Excludes "\t", "\n", "\v", "\f", "\r", " " and "#".
