@@ -15,13 +15,13 @@ require 'open-uri'
 
 require 'indoor_voice'
 
-# You can use any word list and any language. Here's we use Scrabble words. 
+# You can use any word list. Here we use Scrabble words. 
 url = 'https://scrabblehelper.googlecode.com/svn/trunk/ScrabbleHelper/src/dictionaries/TWL06.txt'
 words = open(url).readlines.map(&:chomp)
 
-# :en is the BCP 47 code for English.
+# You can use any language. :en is the BCP 47 code for English.
 model = IndoorVoice.new(words, :en)
-model.setup
+model.setup # wait a moment
 
 model.downcase('HP AND IBM ARE TECHNOLOGY CORPORATIONS.')
 # => "HP and IBM are technology corporations."
