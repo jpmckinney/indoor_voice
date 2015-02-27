@@ -6,14 +6,16 @@
 [![Coverage Status](https://coveralls.io/repos/jpmckinney/indoor_voice/badge.png)](https://coveralls.io/r/jpmckinney/indoor_voice)
 [![Code Climate](https://codeclimate.com/github/jpmckinney/indoor_voice.png)](https://codeclimate.com/github/jpmckinney/indoor_voice)
 
-DOES YOUR DATA CONTAIN ALL-CAPS TEXT THAT YOU WISH WAS PROPERLY CASED? Have your data use its indoor voice.
+DOES YOUR DATA CONTAIN ALL-CAPS TEXT THAT YOU WISH WAS PROPERLY CASED?
+
+Have your data use its indoor voice.
 
 ```ruby
 require 'open-uri'
 
 require 'indoor_voice'
 
-# Use a Scrabble word list as a proxy for the English language. You can use any word list and any language.
+# You can use any word list and any language. Here's we use Scrabble words. 
 url = 'https://scrabblehelper.googlecode.com/svn/trunk/ScrabbleHelper/src/dictionaries/TWL06.txt'
 words = open(url).readlines.map(&:chomp)
 
@@ -29,13 +31,13 @@ model.downcase('HP AND IBM ARE TECHNOLOGY CORPORATIONS.')
 
 IndoorVoice is based on the assumption that most acronyms contain non-word character sequences. For example, no English word has the character sequence `bm` in a word-final position, therefore `IBM` must be an acronym.
 
-Once you have the string with only acronyms in uppercase, you can (in your own code) selectively uppercase letters, like the first letter in each sentence, or the first letter of each word.
+Once you have a string with only acronyms in uppercase, you can (in your own code) selectively uppercase letters, like the first letter in each sentence, or the first letter of each word. Since most titlecasing gems recase acronyms, titlecasing is a planned feature.
 
 # Why?
 
 No gem for titlecasing dealt with acronyms well. In case this gem doesn't suit your needs, see:
 
-* [titleize](https://rubygems.org/gems/titleize), [titlecase](https://rubygems.org/gems/titlecase), [title_case](https://rubygems.org/gems/title_case) and [gruber-case](https://rubygems.org/gems/gruber-case), based on [TitleCase.pl](http://daringfireball.net/2008/05/title_case) by John Gruber of DaringFireball
+* [titleize](https://rubygems.org/gems/titleize), [titlecase](https://rubygems.org/gems/titlecase), [title_case](https://rubygems.org/gems/title_case) and [gruber-case](https://rubygems.org/gems/gruber-case), based on [TitleCase.pl](http://daringfireball.net/2008/05/title_case) by John Gruber
 * [namecase](https://rubygems.org/gems/namecase), based on [Lingua::EN::NameCase](http://search.cpan.org/~barbie/Lingua-EN-NameCase-1.19/lib/Lingua/EN/NameCase.pm) by Mark Summerfield
 * [clever_title](https://rubygems.org/gems/clever_title)
 
