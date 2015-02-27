@@ -32,7 +32,7 @@ RSpec.describe IndoorVoice do
 
   describe '#downcase' do
     it 'should downcase only non-acronyms' do
-      expect(model.downcase('THE CAT WILL BEAT THE ROBOT')).to eq('the cat will beat the ROBOT')
+      expect(model.downcase('THE CAT WILL BEAT THE ROBOT')).to eq('the cat will beat the ROBOT') # "cat" and "beat" are not in the word list
     end
   end
 end
