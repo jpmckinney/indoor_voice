@@ -41,4 +41,4 @@ No gem for titlecasing dealt with acronyms well. In case this gem doesn't suit y
 * [namecase](https://rubygems.org/gems/namecase), based on [Lingua::EN::NameCase](http://search.cpan.org/~barbie/Lingua-EN-NameCase-1.19/lib/Lingua/EN/NameCase.pm) by Mark Summerfield
 * [clever_title](https://rubygems.org/gems/clever_title)
 
-Copyright (c) 2014 James McKinney, released under the MIT license
+Copyright (c) 2015 James McKinney, released under the MIT license
