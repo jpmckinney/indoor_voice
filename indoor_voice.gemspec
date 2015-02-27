@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["James McKinney"]
   s.homepage    = "https://github.com/jpmckinney/indoor_voice"
-  s.summary     = %q{Titlecase uppercase strings excluding acronyms}
+  s.summary     = %q{Lowercase all-caps strings excluding acronyms}
   s.license     = 'MIT'
 
   s.files         = `git ls-files`.split("\n")

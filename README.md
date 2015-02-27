@@ -1,4 +1,4 @@
-# IndoorVoice: Lowercase uppercase strings excluding acronyms
+# IndoorVoice: Lowercase all-caps strings excluding acronyms
 
 [![Gem Version](https://badge.fury.io/rb/indoor_voice.svg)](https://badge.fury.io/rb/indoor_voice)
 [![Build Status](https://secure.travis-ci.org/jpmckinney/indoor_voice.png)](https://travis-ci.org/jpmckinney/indoor_voice)
