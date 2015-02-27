@@ -43,6 +43,7 @@ class IndoorVoice
       end
     end
 
+    # Determine the possible two-character sequences. Should be O(n) of all characters in all words.
     @words.each do |word|
       chars = UnicodeUtils.upcase(word, @language_id).chars
       @characters.merge(chars)
@@ -55,6 +56,7 @@ class IndoorVoice
       end
     end
 
+    # Determine whether the language contains any characters requiring escaping.
     escape = @characters.intersect?(SPECIAL_CHARACTERS)
 
     patterns = {}
@@ -62,10 +64,12 @@ class IndoorVoice
       patterns[type] = []
     end
 
+    # Build the regular expressions for non-word character sequences.
     data.each do |type,hash|
       hash.each do |character,set|
         difference = @characters - set
         unless difference.empty?
+          # The first condition is just to make the patterns more human-readable.
           patterns[type] << if difference.one?
             if escape
               "#{Regexp.escape(character)}#{Regexp.escape(difference.to_a.first)}"

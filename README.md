@@ -27,7 +27,7 @@ model.downcase('HP AND IBM ARE TECHNOLOGY CORPORATIONS.')
 # => "HP and IBM are technology corporations."
 ```
 
-![](http://i.giphy.com/ol57TlMlftsQg.gif)
+![This gem is magic.](http://i.giphy.com/ol57TlMlftsQg.gif)
 
 IndoorVoice is based on the assumption that most acronyms contain non-word character sequences. For example, no English word has the character sequence `bm` in a word-final position, therefore `IBM` must be an acronym.
 
