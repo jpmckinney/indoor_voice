@@ -1,7 +1,9 @@
 require 'set'
 
+require 'unicode_utils/casefold'
 require 'unicode_utils/downcase'
 require 'unicode_utils/each_word'
+require 'unicode_utils/titlecase'
 require 'unicode_utils/upcase'
 
 # Lowercases uppercase strings excluding acronyms.
@@ -104,6 +106,28 @@ class IndoorVoice
         word
       else
         UnicodeUtils.downcase(word, @language_id)
+      end
+    end.join
+  end
+
+  # Titlecases all words except for acronyms.
+  #
+  # @param [String] string a string
+  # @param [Hash] options optional arguments
+  # @option options [Array<String>] :except words to downcase, e.g. conjunctions
+  # @return [String] a string with acronyms in uppercase and others in titlecase
+  def titlecase(string, options = {})
+    blacklist = options.fetch(:except, []).map do |word|
+      UnicodeUtils.casefold(word)
+    end
+
+    UnicodeUtils.each_word(string).map do |word|
+      if @patterns.any?{|pattern| word[pattern]}
+        word
+      elsif blacklist.include?(UnicodeUtils.casefold(word))
+        UnicodeUtils.downcase(word, @language_id)
+      else
+        UnicodeUtils.titlecase(word, @language_id)
       end
     end.join
   end

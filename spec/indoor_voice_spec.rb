@@ -35,4 +35,14 @@ RSpec.describe IndoorVoice do
       expect(model.downcase('THE CAT WILL BEAT THE ROBOT')).to eq('the cat will beat the ROBOT') # "cat" and "beat" are not in the word list
     end
   end
+
+  describe '#titlecase' do
+    it 'should titlecase only non-acronyms' do
+      expect(model.titlecase('THE CAT WILL BEAT THE ROBOT')).to eq('The Cat Will Beat The ROBOT')
+    end
+
+    it 'should titlecase only non-acronyms and non-exceptions' do
+      expect(model.titlecase('THE CAT WILL BEAT THE ROBOT', except: words)).to eq('the Cat will Beat the ROBOT')
+    end
+  end
 end

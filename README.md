@@ -23,8 +23,17 @@ words = open(url).readlines.map(&:chomp)
 model = IndoorVoice.new(words, :en)
 model.setup # wait a moment
 
-model.downcase('HP AND IBM ARE TECHNOLOGY CORPORATIONS.')
-# => "HP and IBM are technology corporations."
+model.downcase('HP, IBM AND MICROSOFT ARE TECHNOLOGY CORPORATIONS.')
+# => "HP, IBM and microsoft are technology corporations."
+
+model.titlecase('HP, IBM AND MICROSOFT ARE TECHNOLOGY CORPORATIONS.')
+# => "HP, IBM And Microsoft Are Technology Corporations."
+
+model.titlecase('HP, IBM AND MICROSOFT ARE TECHNOLOGY CORPORATIONS.', except: %w(a an and as at but by en for if in of on or the to via))
+# => "HP, IBM and Microsoft Are Technology Corporations."
+
+model.titlecase('HP, IBM AND MICROSOFT ARE TECHNOLOGY CORPORATIONS.', except: words)
+# => "HP, IBM and Microsoft are technology corporations."
 ```
 
 ![This gem is magic.](http://i.giphy.com/ol57TlMlftsQg.gif)
