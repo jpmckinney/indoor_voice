@@ -40,7 +40,7 @@ model.titlecase('HP, IBM AND MICROSOFT ARE TECHNOLOGY CORPORATIONS.', except: wo
 
 IndoorVoice is based on the assumption that most acronyms contain non-word character sequences. For example, no English word has the character sequence `bm` in a word-final position, therefore `IBM` must be an acronym.
 
-Once you have a string with only acronyms in uppercase, you can (in your own code) selectively uppercase letters, like the first letter in each sentence, or the first letter of each word. Since most titlecasing gems recase acronyms, titlecasing is a planned feature.
+Once you have a string with only acronyms in uppercase, you can (in your own code) selectively uppercase letters, like the first letter in each sentence, or the first letter of each word. Since most titlecasing gems recase acronyms, IndoorVoice provides its own `titlecase` method.
 
 # Why?
 
