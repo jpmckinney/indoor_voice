@@ -127,7 +127,9 @@ class IndoorVoice
       elsif blacklist.include?(UnicodeUtils.casefold(word))
         UnicodeUtils.downcase(word, @language_id)
       else
-        UnicodeUtils.titlecase(word, @language_id)
+        UnicodeUtils.titlecase(word, @language_id).gsub(/\b\p{L}\.\p{Ll}\b/) do |s|
+          UnicodeUtils.upcase(s, @language_id)
+        end
       end
     end.join
   end

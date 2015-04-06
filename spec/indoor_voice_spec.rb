@@ -44,5 +44,9 @@ RSpec.describe IndoorVoice do
     it 'should titlecase only non-acronyms and non-exceptions' do
       expect(model.titlecase('THE CAT WILL BEAT THE ROBOT', except: words)).to eq('the Cat will Beat the ROBOT')
     end
+
+    it 'should uppercase abbreviations' do
+      expect(model.titlecase(%(IT'S "CD", NOT "C.D" OR "C.D.".), except: words)).to eq(%(It's "CD", not "C.D" or "C.D.".))
+    end
   end
 end
