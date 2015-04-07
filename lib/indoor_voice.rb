@@ -24,6 +24,15 @@ class IndoorVoice
   # "(", ")", "*", "+", "?", "[" and "\\" can cause SyntaxError.
   SPECIAL_CHARACTERS = Set.new(["$", "(", ")", "*", "+", "-", ".", "?", "[", "\\", "]", "^", "{", "|", "}"])
 
+  CONTRACTIONS = {
+    # @see https://en.wikipedia.org/wiki/English_auxiliaries_and_contractions#Contracted_auxiliaries
+    en: ['D', 'S', 'LL', 'RE', 'VE'],
+    # /\bI['’]M\b/
+    # @see https://en.wikipedia.org/wiki/English_auxiliaries_and_contractions#Negative_contractions
+    # /N['’]T\b/
+    # @see https://en.wikipedia.org/wiki/English_auxiliaries_and_contractions#Contractions_not_involving_auxiliaries
+  }
+
   # @param [Array<String>] words the words in the language
   # @param [Symbol] language_id the language's BCP 47 code
   # @see http://tools.ietf.org/html/bcp47
@@ -32,6 +41,7 @@ class IndoorVoice
     @language_id = language_id
     @characters = Set.new
     @patterns = []
+    @contractions = CONTRACTIONS.fetch(language_id, [])
   end
 
   # Determines the regular expressions for non-word character sequences.
@@ -121,16 +131,20 @@ class IndoorVoice
       UnicodeUtils.casefold(word)
     end
 
-    UnicodeUtils.each_word(string).map do |word|
-      if @patterns.any?{|pattern| word[pattern]}
-        word
-      elsif blacklist.include?(UnicodeUtils.casefold(word))
-        UnicodeUtils.downcase(word, @language_id)
-      else
-        UnicodeUtils.titlecase(word, @language_id).gsub(/\b\p{L}\.\p{Ll}\b/) do |s|
-          UnicodeUtils.upcase(s, @language_id)
+    UnicodeUtils.each_word(string).map do |string|
+      string.partition(/['’]/).each_with_index.map do |word,index|
+        if index == 2 && @contractions.include?(word)
+          UnicodeUtils.downcase(word, @language_id)
+        elsif @patterns.any?{|pattern| word[pattern]}
+          word
+        elsif blacklist.include?(UnicodeUtils.casefold(word))
+          UnicodeUtils.downcase(word, @language_id)
+        else
+          UnicodeUtils.titlecase(word, @language_id).gsub(/\b\p{L}\.\p{Ll}\b/) do |s|
+            UnicodeUtils.upcase(s, @language_id)
+          end
         end
-      end
+      end.join
     end.join
   end
 end

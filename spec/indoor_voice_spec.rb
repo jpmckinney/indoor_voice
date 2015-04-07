@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 RSpec.describe IndoorVoice do
+  # Removes "I" from the word list to avoid lowercasing "I".
   # @see http://en.wikipedia.org/wiki/Most_common_words_in_English
   let :words do
-    %w(the be to of and a in that have I it for not on with he as you do at this but his by from they we say her she or an will my one all would there their what so up out if about who get which go me when make can like time no just him know take people into year your good some could them see other than then now look only come its over think also back after use two how our work first well way even new want because any these give day most us)
+    %w(the be to of and a in that have it for not on with he as you do at this but his by from they we say her she or an will my one all would there their what so up out if about who get which go me when make can like time no just him know take people into year your good some could them see other than then now look only come its over think also back after use two how our work first well way even new want because any these give day most us)
   end
 
   let :model do
@@ -46,7 +47,22 @@ RSpec.describe IndoorVoice do
     end
 
     it 'should uppercase abbreviations' do
-      expect(model.titlecase(%(IT'S "CD", NOT "C.D" OR "C.D.".), except: words)).to eq(%(It's "CD", not "C.D" or "C.D.".))
+      expect(model.titlecase(%(USE "CD", NOT "C.D" OR "C.D.".), except: words)).to eq(%(use "CD", not "C.D" or "C.D.".))
+    end
+
+    it 'should lowercase contractions' do
+      {
+        # Auxiliaries
+        "YOU'D" => "you'd",
+        "I'M" => "I'm",
+        "IT'S" => "it's",
+        "YOU'LL" => "you'll",
+        "YOU'RE" => "you're",
+        "YOU'VE" => "you've",
+        "LL'LL" => "LL'll",
+      }.each do |string,expected|
+        expect(model.titlecase(string, except: words)).to eq(expected)
+      end
     end
   end
 end
