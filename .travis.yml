@@ -1,4 +1,6 @@
+sudo: false
 language: ruby
+cache: bundler
 rvm:
   # No Enumerator#size in 1.9.3
   # No Set#intersect? in 2.0.0 https://bugs.ruby-lang.org/issues/6588
