@@ -2,7 +2,6 @@
 
 [![Gem Version](https://badge.fury.io/rb/indoor_voice.svg)](https://badge.fury.io/rb/indoor_voice)
 [![Build Status](https://secure.travis-ci.org/jpmckinney/indoor_voice.png)](https://travis-ci.org/jpmckinney/indoor_voice)
-[![Dependency Status](https://gemnasium.com/jpmckinney/indoor_voice.png)](https://gemnasium.com/jpmckinney/indoor_voice)
 [![Coverage Status](https://coveralls.io/repos/jpmckinney/indoor_voice/badge.png)](https://coveralls.io/r/jpmckinney/indoor_voice)
 [![Code Climate](https://codeclimate.com/github/jpmckinney/indoor_voice.png)](https://codeclimate.com/github/jpmckinney/indoor_voice)
 
